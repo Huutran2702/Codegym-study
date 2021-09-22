@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // Tạo hàm viết sinh ra một ma trận có n dòng, m cột gồm có các giá trị được sinh ngẫu nhiên từ 10 đến 90;
+    // a. Viết hàm hiển thị ma trận đó
+    // b. Viết hàm tính tổng các giá trị trong ma trận đó
+    // c. Viết hàm hiển thị lại ma trận đó nhưng chỉ hiển thị các số nguyên tố, không phải số nguyên tố thì hiển thị dấu gạch ngang 
+    // d. Viết hàm trả về giá trị lớn nhất có trong ma trận này
+    // e. Viết hàm trả về số lượng giá trị lớn nhất có trong mảng
+
+
+    function createMatrix(n, m, min, max) {
+        let matrix = [];
+        for (let i = 0; i < n; i++) {
+            matrix[i] = new Array();
+            for (let j = 0; j < m; j++) {
+                matrix[i][j] = Math.floor(Math.random() * (max - min + 1) + min);
+            }
+        }
+        return matrix;
+    }
+    var arr = createMatrix(10, 20, 10, 90);
+    var matrix = createMatrix(10, 20, 10, 90);
+    // a. Hiển thị ma trận
+    function displayMatrix(array) {
+        document.write(array.join('<br>'));
+    }
+    displayMatrix(arr);
+    // b. Tính tổng ma trận đó
+    function totalMatrix(n, m, array) {
+        let total = 0;
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < m; j++) {
+                total += array[i][j];
+            }
+        }
+        return total;
+    }
+    document.write(`<br> <br> Tổng của ma trận trên là:  ${totalMatrix(10,20,arr)} <br>`);
+     // c. Viết hàm hiển thị lại ma trận đó nhưng chỉ hiển thị các số nguyên tố, không phải số nguyên tố thì hiển thị dấu gạch ngang
+     function primeNumber(number) {
+        let count = 0;
+        for (let x = 2; x < number; x++) {
+            if (number % x == 0) {
+                count += 1;
+                break;
+            }
+        }
+        return count;
+    }
+    function displayPrimeNumber(n,m,array) {
+        let arrPrime = array;
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < m; j++) {
+                if (arrPrime[i][j] == 1) {
+                    arrPrime[i][j] = '-';
+                } else if (primeNumber(arrPrime[i][j]) == 0) {
+
+                } else {
+                    arrPrime[i][j] = '-';
+                }
+            }
+        }
+        document.write(arrPrime.join("<br>"));
+    }
+    document.write("<br>" +'Ma trận số nguyên tố là: ' + "<br>" + "<br>");
+    displayPrimeNumber(10,20,matrix);   
+    // d. Viết hàm trả về giá trị lớn nhất có trong ma trận này
+    function maxValue(n,m,array) {
+        let giaTriLonNhat = 0;
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < m; j++) {
+                if (array[i][j] > giaTriLonNhat) {
+                    giaTriLonNhat = array[i][j];
+                }
+            }
+        }
+        return giaTriLonNhat;
+    }
+    document.write(`<br> Max value in matrix : ${maxValue(10,20,arr)} <br>`);
+    // e. Viết hàm trả về số lượng giá trị lớn nhất có trong mảng
+    function quantityMaxValue(n, m, maxValue) {
+        let quantity = 0;
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < m; j++) {
+                if (arr[i][j] == maxValue) {
+                    quantity += 1;
+                }
+            }
+        }
+        return quantity;
+    }
+    document.write(` <br> Số lượng giá trị ${maxValue(10,20,arr)} có trong ma trận là: ${quantityMaxValue(10,20, maxValue(4,4,arr))} <br>`);
+   
+
+
+</script>
+
+</html>
